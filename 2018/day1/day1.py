@@ -23,16 +23,17 @@ def assignment1(num_list):
     return i
 
 
-def assignment2(num_list):
-    i = 0
+def assignment2(num_list: list):
     test_set = set()
-    for line in num_list:
-        i += parse_numbers(line.strip())
-        if i not in test_set:
-            test_set.add(i)
-        else:
-            return i
-    return 0
+    frequency = 0
+
+    while True:
+        for line in num_list:
+            frequency += parse_numbers(line.strip())
+            if frequency not in test_set:
+                test_set.add(frequency)
+            else:
+                return frequency
 
 
 if __name__ == '__main__':
