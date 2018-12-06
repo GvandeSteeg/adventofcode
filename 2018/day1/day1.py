@@ -1,3 +1,8 @@
+def parse_input_file(input_file):
+    with open(input_file) as f:
+        return f.read().split('\n')
+
+
 def parse_numbers(number: str):
     """Parses a number with a symbol"""
     mod = number[0]
@@ -9,13 +14,26 @@ def parse_numbers(number: str):
         return 0 - num
 
 
-def assignment1(input_file):
+def assignment1(num_list):
     i = 0
-    with open(input_file) as f:
-        for line in f:
-            i += parse_numbers(line.strip())
-    return (i)
+    for line in num_list:
+        i += parse_numbers(line.strip())
+    return i
+
+
+def assignment2(num_list):
+    i = 0
+    test_set = set()
+    for line in num_list:
+        i += parse_numbers(line.strip())
+        if i not in test_set:
+            test_set.add(i)
+        else:
+            return i
+    return 0
 
 
 if __name__ == '__main__':
-    print(assignment1("input.txt"))
+    numbers = parse_input_file("input.txt")
+    print("Assignment 1: {}".format(assignment1(numbers)))
+    print("Assignment 2: {}".format(assignment2(numbers)))
