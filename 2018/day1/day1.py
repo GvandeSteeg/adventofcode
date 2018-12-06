@@ -12,6 +12,8 @@ def parse_numbers(number: str):
         return num
     elif mod == "-":
         return 0 - num
+    else:
+        raise TypeError("Expected + or -")
 
 
 def assignment1(num_list):
