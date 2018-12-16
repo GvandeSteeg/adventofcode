@@ -1,6 +1,6 @@
 def parse_input_file(input_file):
     with open(input_file) as f:
-        return f.read().split('\n')
+        return [line.strip() for line in f]
 
 
 def parse_numbers(number: str):
