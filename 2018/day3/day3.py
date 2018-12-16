@@ -65,12 +65,13 @@ def assignment1(parsed_dict):
 
 
 def assignment2(barcode_ids, overlapping_ids):
-    return barcode_ids - overlapping_ids
+    return tuple(barcode_ids - overlapping_ids)[0]
 
 
 if __name__ == '__main__':
     barcode_dict = parse_claim(*parse_input_file("input.txt"))
     assignment_1 = assignment1(barcode_dict)
-    assignment_2 = assignment2(set(barcode_dict.keys()), assignment_1[1])[0]
+    assignment_2 = assignment2(set(barcode_dict.keys()), assignment_1[1])
     print("Assignment 1: {}".format(len(assignment_1[0])))
     print("Assignment 2: {}".format(assignment_2))
+
