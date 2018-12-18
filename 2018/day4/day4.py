@@ -38,7 +38,7 @@ def calculate_sleep(guard: List[Dict[datetime, AnyStr]]):
 
 
 if __name__ == '__main__':
-    inputs = sorted(parse_input_file("input_test.txt"))
+    inputs = sorted(parse_input_file("input.txt"))
     guard_list = dict(parse_guard_metadata(*inputs))
     sleepy_guard, sleep_minute, sleep_time = 0, 0, 0
     for guard, guard_data in guard_list.items():
