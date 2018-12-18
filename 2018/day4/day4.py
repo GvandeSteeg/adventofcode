@@ -37,15 +37,23 @@ def calculate_sleep(guard: List[Dict[datetime, AnyStr]]):
     return asleep, [key for key, value in minute_count.items() if value == max(minute_count.values())][0]
 
 
-if __name__ == '__main__':
-    inputs = sorted(parse_input_file("input.txt"))
-    guard_list = dict(parse_guard_metadata(*inputs))
+def assignment1(guards):
     sleepy_guard, sleep_minute, sleep_time = 0, 0, 0
-    for guard, guard_data in guard_list.items():
+    for guard, guard_data in guards.items():
         sleeptime, minute = calculate_sleep(guard_data)
         if sleeptime > sleep_time:
             sleep_time = sleeptime
             sleep_minute = minute
             sleepy_guard = guard
 
-    print(sleepy_guard * sleep_minute)
+    return (sleepy_guard * sleep_minute)
+
+
+def assignment2():
+    pass
+
+if __name__ == '__main__':
+    inputs = sorted(parse_input_file("input.txt"))
+    guard_list = dict(parse_guard_metadata(*inputs))
+    print("Assignment 1: {}".format(assignment1(guard_list)))
+    print("Assignment 2: {}".format(assignment2()))
