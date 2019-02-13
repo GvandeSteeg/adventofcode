@@ -5,15 +5,7 @@ def parse_input_file(input_file):
 
 def parse_numbers(number: str):
     """Parses a number with a symbol"""
-    mod = number[0]
-    num = int(number[1:])
-
-    if mod == "+":
-        return num
-    elif mod == "-":
-        return 0 - num
-    else:
-        raise TypeError("Expected + or -")
+    return int(number)
 
 
 def assignment1(num_list):
