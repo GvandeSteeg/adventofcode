@@ -19,8 +19,6 @@ class TestDay1(TestCase):
     def test_parse_numbers(self):
         self.assertEqual(12, parse_numbers('+12'))
         self.assertEqual(-12, parse_numbers('-12'))
-        self.assertRaises(TypeError, parse_numbers, '12')
-        self.assertRaises(TypeError, parse_numbers, 12)
 
 
     def test_assignment1(self):
