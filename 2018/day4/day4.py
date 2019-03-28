@@ -8,7 +8,23 @@ from iso8601 import parse_date
 from day1 import parse_input_file
 
 
-def parse_guard_metadata(*inputs):
+def parse_guard_metadata(*inputs: str) -> Dict[int, List[Dict[str, Union[datetime, str]]]]:
+    """
+    Parses guard metadata into a list of dicts
+
+    [1518-11-01 00:00] Guard #10 begins shift
+    [1518-11-01 00:05] falls asleep
+    [1518-11-01 00:25] wakes up
+
+    becomes {10: [
+                    {'datetime': 1518-11-01 00:05, 'metadata': 'falls asleep'},
+                    {'datetime': 1518-11-01 00:25, 'metadata': 'wakes up'}
+                 ],
+                 11: [...]
+                 }
+
+    :param inputs: Iterable of strings with guard metadata
+    """
     guards = defaultdict(list)
     current_guard = ''
     for item in inputs:
@@ -18,10 +34,10 @@ def parse_guard_metadata(*inputs):
             current_guard = int(metadata.split()[1][1:])
         else:
             guards[current_guard].append(dict(datetime=datetime, metadata=metadata))
-    return guards
+    return dict(guards)
 
 
-def calculate_sleep(guard: List[Dict[datetime, AnyStr]]):
+def calculate_sleep(guard: List[Dict[datetime, str]]):
     asleep = 0
     time_last_asleep = datetime(1, 1, 1)
     minute_count = defaultdict(int)
@@ -52,8 +68,9 @@ def assignment1(guards):
 def assignment2():
     pass
 
+
 if __name__ == '__main__':
     inputs = sorted(parse_input_file("input.txt"))
-    guard_list = dict(parse_guard_metadata(*inputs))
+    guard_list = parse_guard_metadata(*inputs)
     print("Assignment 1: {}".format(assignment1(guard_list)))
     print("Assignment 2: {}".format(assignment2()))
