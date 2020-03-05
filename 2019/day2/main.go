@@ -1,8 +1,8 @@
 package main
 
 import (
-	"adventofcode/util"
 	"fmt"
+	"github.com/GvandeSteeg/adventofcode/util"
 	"log"
 	"strings"
 )
