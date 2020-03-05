@@ -9,7 +9,7 @@ import (
 )
 
 func ReadInputFile(year, day int) ([]string, error) {
-	f, err := os.Open(fmt.Sprintf("/Users/gvandestee/GolandProjects/src/adventofcode/%d/day%d/input.txt", year, day))
+	f, err := os.Open(fmt.Sprintf("/Users/gvandestee/GolandProjects/src/github.com/GvandeSteeg/adventofcode/%d/day%d/input.txt", year, day))
 	if err != nil {
 		return nil, err
 	}
