@@ -11,12 +11,25 @@ import (
 	"time"
 )
 
-type Point struct {
-	x, y int
-}
-
-type Wire []Line
+type Point struct{ x, y int }
 type Line [2]Point
+type Wire []Line
+
+// Returns true if Point is in Line
+func (l Line) Contains(p Point) bool {
+	l = Swap(l)
+	points := make(map[Point]struct{}) // empty struct takes up no memory
+	for i := l[0].x; i <= l[1].x; i++ {
+		np := Point{i, l[0].y}
+		points[np] = struct{}{}
+	}
+	for i := l[0].y; i <= l[1].y; i++ {
+		np := Point{l[0].x, i}
+		points[np] = struct{}{}
+	}
+	_, ok := points[p]
+	return ok
+}
 
 // Sort points in line in ascending order
 func Swap(line Line) Line {
@@ -107,6 +120,9 @@ func findSteps(line Line) int {
 
 // Returns the value to be subtracted from a line's cost once an intersection is encountered
 func returnChange(line Line, intersection Point) int {
+	if !line.Contains(intersection) {
+		panic(fmt.Sprintf("line doesn't touch intersection: %x not in %x", intersection, line))
+	}
 	xcost := util.Abs(line[0].x - intersection.x)
 	xlen := util.Abs(line[0].x - line[1].x)
 	xchange := xlen - xcost
